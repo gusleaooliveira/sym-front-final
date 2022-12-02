@@ -27,7 +27,7 @@ const Revenue = () => {
   const [isCreateRevenue, setCreateRevenue] = useState(false);
   const [isDeleteRevenue, setDeleteRevenue] = useState(false);
   const [isEditRevenue, setEditRevenue] = useState(false);
-  const [gasto, setGasto] = useState<IRevenue>();
+  const [recebimento, setRecebimento] = useState<IRevenue>();
 
   return (
     <>
@@ -48,7 +48,7 @@ const Revenue = () => {
           >
             <Text>
               {" "}
-              R$ {chave.value.toFixed(2)} - {chave.description}
+              R$ {chave.value.toFixed(2)} - {chave.type}
             </Text>
 
             <Flex direction="row">
@@ -56,7 +56,7 @@ const Revenue = () => {
               <ActionIcon
                 onClick={() => {
                   setEditRevenue(true);
-                  setGasto(chave);
+                  setRecebimento(chave);
                 }}
               >
                 <IconPencil size={16} />
@@ -65,7 +65,7 @@ const Revenue = () => {
                 title="Excluir recebimento"
                 onClick={() => {
                   setDeleteRevenue(true);
-                  setGasto(chave);
+                  setRecebimento(chave);
                 }}
               />
             </Flex>
@@ -82,13 +82,13 @@ const Revenue = () => {
         isOpen={isDeleteRevenue}
         onClose={() => setDeleteRevenue(false)}
         refetch={refetch}
-        gasto={gasto}
+        recebimento={recebimento}
       />
       <ModalEditRevenue
         isOpen={isEditRevenue}
         onClose={() => setEditRevenue(false)}
         refetch={refetch}
-        gasto={gasto}
+        recebimento={recebimento}
       />
     </>
   );

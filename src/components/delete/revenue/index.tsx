@@ -17,7 +17,12 @@ import { api, queryClient } from "../../../lib";
 import { RootState } from "../../../stores";
 import { IModal } from "../../../types";
 
-const ModalDeleteRevenue = ({ isOpen, onClose, refetch, gasto }: IModal) => {
+const ModalDeleteRevenue = ({
+  isOpen,
+  onClose,
+  refetch,
+  recebimento,
+}: IModal) => {
   const { token, user } = useSelector((state: RootState) => state.clickState);
   const { mutate } = useMutation(
     async (id: number) => {
@@ -52,8 +57,8 @@ const ModalDeleteRevenue = ({ isOpen, onClose, refetch, gasto }: IModal) => {
       <Flex direction={"column"}>
         <Text>
           {" "}
-          Deseja apagar esse gasto de R$ {gasto?.value.toFixed(2)} referente
-          ao/à {gasto?.description}?{" "}
+          Deseja apagar esse gasto de R$ {recebimento?.value.toFixed(2)}{" "}
+          referente ao/à {recebimento?.type}?{" "}
         </Text>
         <br />
         <Flex direction={"row"} justify={"flex-end"}>
@@ -70,7 +75,7 @@ const ModalDeleteRevenue = ({ isOpen, onClose, refetch, gasto }: IModal) => {
             <Button
               variant="default"
               onClick={() => {
-                mutate(gasto?.id ? gasto?.id : 0);
+                mutate(recebimento?.id ? recebimento?.id : 0);
               }}
             >
               Sim

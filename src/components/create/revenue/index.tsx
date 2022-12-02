@@ -58,13 +58,8 @@ const ModalCreateRevenue = ({ isOpen, onClose, refetch }: IModal) => {
   ]);
 
   let [tagList, setTagList] = useState([
-    { label: "Aluguel", value: "Aluguel" },
-    { label: "Transporte", value: "Transporte" },
-    { label: "Saúde", value: "Saúde" },
-    { label: "Parcela", value: "Parcela" },
-    { label: "Mensalidade", value: "Mensalidade" },
-    { label: "Alimentação", value: "Alimentação" },
-    { label: "Plano", value: "Plano" },
+    { label: "Salário", value: "Salário" },
+    { label: "Freelancer", value: "Freelancer" },
     { label: "Outro", value: "Outro" },
   ]);
 
@@ -73,18 +68,12 @@ const ModalCreateRevenue = ({ isOpen, onClose, refetch }: IModal) => {
       opened={isOpen}
       onClose={onClose}
       fullScreen
-      title="Cadastrar gasto!"
+      title="Cadastrar recebimento!"
     >
       <form onSubmit={handleSubmit(onSubmit)}>
-        <TextInput
-          label="Descrição"
-          onChange={(e: any) => {
-            setValue("description", e?.target?.value);
-          }}
-        />
         <NumberInput
           label="Valor"
-          placeholder="Digite seu valor gasto"
+          placeholder="Digite seu valor do seu recebimento"
           defaultValue={0.0}
           min={0}
           step={0.01}
@@ -92,7 +81,7 @@ const ModalCreateRevenue = ({ isOpen, onClose, refetch }: IModal) => {
           value={watch("value")}
           withAsterisk
           required
-          description={"Descreva quanto você gastou"}
+          description={"Descreva quanto você  do seu recebimento"}
           onChange={(e: number) => {
             setValue("value", e);
           }}
@@ -101,7 +90,7 @@ const ModalCreateRevenue = ({ isOpen, onClose, refetch }: IModal) => {
           placeholder="Data do valor gasto"
           label="Data"
           withAsterisk
-          description="Selecione a data em que gastou o valor"
+          description="Selecione a data em que recebeu o valor"
           locale="pt-br"
           value={watch("date")}
           onChange={(e: Date) => {
@@ -111,9 +100,9 @@ const ModalCreateRevenue = ({ isOpen, onClose, refetch }: IModal) => {
         />
         <Select
           label="Tipo"
-          placeholder="Tipo de gasto"
+          placeholder="Tipo  do seu recebimento"
           withAsterisk
-          description="Selecione a  frequência do tipo de gasto"
+          description="Selecione a  frequência do tipo de recebimento"
           data={tagList}
           onChange={(e: string) => {
             setValue("type", e);
@@ -121,9 +110,9 @@ const ModalCreateRevenue = ({ isOpen, onClose, refetch }: IModal) => {
         />
         <Select
           label="Tag"
-          placeholder="Classifque o gasto"
+          placeholder="Classifque  o seu recebimento"
           withAsterisk
-          description="Classifique o tipo de gasto"
+          description="Classifique o tipo de  do seu recebimento"
           data={typeList}
           onChange={(e: string) => {
             setValue("frequency", e);

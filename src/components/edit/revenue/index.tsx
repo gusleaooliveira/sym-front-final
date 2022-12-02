@@ -16,7 +16,12 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../stores";
 
-const ModalCreateRevenue = ({ isOpen, onClose, refetch, gasto }: IModal) => {
+const ModalCreateRevenue = ({
+  isOpen,
+  onClose,
+  refetch,
+  recebimento,
+}: IModal) => {
   const { token, user } = useSelector((state: RootState) => state.clickState);
 
   const { mutate } = useMutation(
@@ -59,19 +64,14 @@ const ModalCreateRevenue = ({ isOpen, onClose, refetch, gasto }: IModal) => {
   ]);
 
   let [tagList, setTagList] = useState([
-    { label: "Aluguel", value: "Aluguel" },
-    { label: "Transporte", value: "Transporte" },
-    { label: "Saúde", value: "Saúde" },
-    { label: "Parcela", value: "Parcela" },
-    { label: "Mensalidade", value: "Mensalidade" },
-    { label: "Alimentação", value: "Alimentação" },
-    { label: "Plano", value: "Plano" },
+    { label: "Salário", value: "Salário" },
+    { label: "Freelancer", value: "Freelancer" },
     { label: "Outro", value: "Outro" },
   ]);
 
   useEffect(() => {
-    reset(gasto);
-  }, [gasto]);
+    reset(recebimento);
+  }, [recebimento]);
 
   return (
     <Modal
@@ -81,13 +81,6 @@ const ModalCreateRevenue = ({ isOpen, onClose, refetch, gasto }: IModal) => {
       title="Cadastrar gasto!"
     >
       <form onSubmit={handleSubmit(onSubmit)}>
-        <TextInput
-          label="Descrição"
-          value={watch("description")}
-          onChange={(e: any) => {
-            setValue("description", e?.target?.value);
-          }}
-        />
         <NumberInput
           label="Valor"
           placeholder="Digite seu valor gasto"
