@@ -12,10 +12,10 @@ import {
   ActionIcon,
 } from "@mantine/core";
 import { useMutation } from "@tanstack/react-query";
-import { IExpense, IModal } from "../../types";
-import { api, queryClient } from "../../lib";
 import { useSelector } from "react-redux";
-import { RootState } from "../../stores";
+import { api, queryClient } from "../../../lib";
+import { RootState } from "../../../stores";
+import { IModal } from "../../../types";
 
 const ModalDeleteExpense = ({ isOpen, onClose, refetch, gasto }: IModal) => {
   const { token, user } = useSelector((state: RootState) => state.clickState);
