@@ -9,7 +9,7 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { api, queryClient } from "../../../lib";
-import { IExpense, IModal } from "../../../types";
+import { IExpense, IModal, IRevenue } from "../../../types";
 
 import { DatePicker, DateRangePicker } from "@mantine/dates";
 import { useState } from "react";
@@ -20,7 +20,7 @@ const ModalCreateRevenue = ({ isOpen, onClose, refetch }: IModal) => {
   const { token, user } = useSelector((state: RootState) => state.clickState);
 
   const { mutate } = useMutation(
-    async (expense: IExpense) => {
+    async (expense: IRevenue) => {
       const { data } = await api.post("/revenues", expense, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -43,12 +43,12 @@ const ModalCreateRevenue = ({ isOpen, onClose, refetch }: IModal) => {
     watch,
     setValue,
     formState: { errors },
-  } = useForm<IExpense>({
+  } = useForm<IRevenue>({
     defaultValues: {
       user_id: user?.id,
     },
   });
-  const onSubmit = (data: IExpense) => {
+  const onSubmit = (data: IRevenue) => {
     mutate(data);
   };
 
@@ -67,7 +67,11 @@ const ModalCreateRevenue = ({ isOpen, onClose, refetch }: IModal) => {
     <Modal
       opened={isOpen}
       onClose={onClose}
-      fullScreen
+      overlayBlur={3}
+      centered
+       overlayOpacity={0.55}
+       padding={25}
+       radius={'lg'}
       title="Cadastrar recebimento!"
     >
       <form onSubmit={handleSubmit(onSubmit)}>

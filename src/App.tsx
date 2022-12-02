@@ -21,6 +21,7 @@ import React, { useEffect, useState } from "react";
 import { Login } from "./pages";
 import { RootState } from "./stores";
 import {
+  IconAlertCircle,
   IconCardboards,
   IconCardboardsOff,
   IconCards,
@@ -108,6 +109,11 @@ function App() {
       label: "Gastos",
       icon: <IconCreditCardOff />,
     },
+    {
+      path: "/alerts",
+      label: "Alert",
+      icon: <IconAlertCircle />
+    }
   ];
 
   return (

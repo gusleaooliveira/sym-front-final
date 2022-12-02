@@ -77,7 +77,11 @@ const ModalCreateExpense = ({ isOpen, onClose, refetch, gasto }: IModal) => {
     <Modal
       opened={isOpen}
       onClose={onClose}
-      fullScreen
+      overlayBlur={3}
+      overlayOpacity={0.55}
+      centered
+      padding={25}
+      radius={"lg"}
       title="Cadastrar gasto!"
     >
       <form onSubmit={handleSubmit(onSubmit)}>
