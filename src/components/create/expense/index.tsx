@@ -9,12 +9,13 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { api, queryClient } from "../../../lib";
-import { IExpense, IModal } from "../../../types";
+import { IExpense, IModal } from "../../../@types";
 
 import { DatePicker, DateRangePicker } from "@mantine/dates";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../stores";
+import { toast } from "react-toastify";
 
 const ModalCreateExpense = ({ isOpen, onClose, refetch }: IModal) => {
   const { token, user } = useSelector((state: RootState) => state.clickState);
@@ -34,6 +35,17 @@ const ModalCreateExpense = ({ isOpen, onClose, refetch }: IModal) => {
         console.log(resp);
         if (!!refetch) refetch();
         onClose();
+
+        toast.info("Criou um novo gasto!", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       },
     }
   );
@@ -72,11 +84,11 @@ const ModalCreateExpense = ({ isOpen, onClose, refetch }: IModal) => {
     <Modal
       opened={isOpen}
       onClose={onClose}
-       overlayBlur={3}
-       overlayOpacity={0.55}
-       centered
-       padding={25}
-       radius={'lg'}
+      overlayBlur={3}
+      overlayOpacity={0.55}
+      centered
+      padding={25}
+      radius={"lg"}
       title="Cadastrar gasto!"
     >
       <form onSubmit={handleSubmit(onSubmit)}>

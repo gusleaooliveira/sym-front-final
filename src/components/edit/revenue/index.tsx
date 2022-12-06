@@ -9,12 +9,13 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { api, queryClient } from "../../../lib";
-import { IRevenue, IModal } from "../../../types";
+import { IRevenue, IModal } from "../../../@types";
 
 import { DatePicker, DateRangePicker } from "@mantine/dates";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../stores";
+import { toast } from "react-toastify";
 
 const ModalCreateRevenue = ({
   isOpen,
@@ -39,6 +40,17 @@ const ModalCreateRevenue = ({
         console.log(resp);
         if (!!refetch) refetch();
         onClose();
+
+        toast.info("Editou um recebimento!", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       },
     }
   );
@@ -78,16 +90,16 @@ const ModalCreateRevenue = ({
       opened={isOpen}
       onClose={onClose}
       overlayBlur={3}
-       overlayOpacity={0.55}
-       centered
-       padding={25}
-       radius={'lg'}
-      title="Cadastrar gasto!"
+      overlayOpacity={0.55}
+      centered
+      padding={25}
+      radius={"lg"}
+      title="Cadastrar recebimento!"
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <NumberInput
           label="Valor"
-          placeholder="Digite seu valor gasto"
+          placeholder="Digite seu valor recebido"
           defaultValue={0.0}
           min={0}
           step={0.01}
@@ -95,28 +107,29 @@ const ModalCreateRevenue = ({
           value={watch("value")}
           withAsterisk
           required
-          description={"Descreva quanto você gastou"}
+          description={"Descreva quanto você recebeu"}
           onChange={(e: number) => {
             setValue("value", e);
           }}
         />
         <DatePicker
-          placeholder="Data do valor gasto"
           label="Data"
           withAsterisk
-          description="Selecione a data em que gastou o valor"
+          description="Selecione a data em que recebeu o valor"
           locale="pt-br"
+          defaultValue={watch("date")}
           value={watch("date")}
           onChange={(e: Date) => {
             setValue("date", e);
           }}
+          placeholder="Data do valor recebido"
           required
         />
         <Select
           label="Tipo"
-          placeholder="Tipo de gasto"
+          placeholder="Tipo de recebimento"
           withAsterisk
-          description="Selecione a  frequência do tipo de gasto"
+          description="Selecione a  frequência do tipo de recebimento"
           data={tagList}
           value={watch("type")}
           onChange={(e: string) => {
@@ -125,9 +138,9 @@ const ModalCreateRevenue = ({
         />
         <Select
           label="Tag"
-          placeholder="Classifque o gasto"
+          placeholder="Classifque o recebimento"
           withAsterisk
-          description="Classifique o tipo de gasto"
+          description="Classifique o tipo de recebimento"
           data={typeList}
           value={watch("frequency")}
           onChange={(e: string) => {

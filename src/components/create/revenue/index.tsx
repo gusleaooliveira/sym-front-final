@@ -9,12 +9,13 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { api, queryClient } from "../../../lib";
-import { IExpense, IModal, IRevenue } from "../../../types";
+import { IExpense, IModal, IRevenue } from "../../../@types";
 
 import { DatePicker, DateRangePicker } from "@mantine/dates";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../stores";
+import { toast } from "react-toastify";
 
 const ModalCreateRevenue = ({ isOpen, onClose, refetch }: IModal) => {
   const { token, user } = useSelector((state: RootState) => state.clickState);
@@ -34,6 +35,17 @@ const ModalCreateRevenue = ({ isOpen, onClose, refetch }: IModal) => {
         console.log(resp);
         if (!!refetch) refetch();
         onClose();
+
+        toast.info("Criou um novo recebimento!", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       },
     }
   );
@@ -69,9 +81,9 @@ const ModalCreateRevenue = ({ isOpen, onClose, refetch }: IModal) => {
       onClose={onClose}
       overlayBlur={3}
       centered
-       overlayOpacity={0.55}
-       padding={25}
-       radius={'lg'}
+      overlayOpacity={0.55}
+      padding={25}
+      radius={"lg"}
       title="Cadastrar recebimento!"
     >
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -91,7 +103,7 @@ const ModalCreateRevenue = ({ isOpen, onClose, refetch }: IModal) => {
           }}
         />
         <DatePicker
-          placeholder="Data do valor gasto"
+          placeholder="Data do valor recebimento"
           label="Data"
           withAsterisk
           description="Selecione a data em que recebeu o valor"

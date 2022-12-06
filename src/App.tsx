@@ -5,6 +5,7 @@ import {
   Burger,
   Button,
   createStyles,
+  Flex,
   Footer,
   Group,
   Header,
@@ -15,10 +16,12 @@ import {
   Text,
   UnstyledButton,
   useMantineTheme,
+  Notification,
+  Alert,
 } from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
-import { Login } from "./pages";
+import { Alerts, Login } from "./pages";
 import { RootState } from "./stores";
 import {
   IconAlertCircle,
@@ -34,6 +37,7 @@ import {
   IconDashboardOff,
   IconHome2,
   IconLayoutDashboard,
+  IconSubtask,
 } from "@tabler/icons";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -51,6 +55,9 @@ import Revenues from "./pages/Revenue";
 import Expenses from "./pages/Expense";
 import Page404 from "./pages/Page404";
 import { IconDashboard } from "@tabler/icons";
+import { useAlerts, useDasboard } from "./lib";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 const useStyles = createStyles((theme) => ({
   user: {
@@ -75,6 +82,61 @@ function App() {
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
 
+  const { data, isFetched } = useDasboard(!!user?.id ? user?.id : 0, token);
+  const { data: dataAlert, isFetched: isFetchedAlert } = useAlerts(
+    !!user?.id ? user?.id : 0,
+    token
+  );
+
+  // console.log("dt", data);
+
+  function alerta() {
+    console.log("dt", {
+      total_saldo: data?.total_saldo,
+      total_recebimento: data?.total_recebimentos,
+      alert: dataAlert?.value,
+      isAlert: data?.total_saldo >= dataAlert?.value,
+    });
+    if (data?.total_saldo < 0) {
+      toast.error("Você gastou de mais!", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+    if (data?.total_saldo == data?.total_recebimentos) {
+      toast.warn("Você não pode gastar mais!", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+    if (data?.total_saldo >= dataAlert?.value) {
+      toast.info("Você está dentro do limite do alerta de gastos!", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+  }
+
+  alerta();
+
   const router = [
     {
       path: "dashboard",
@@ -87,6 +149,10 @@ function App() {
     {
       path: "expenses",
       element: <Expenses />,
+    },
+    {
+      path: "alerts",
+      element: <Alerts />,
     },
     {
       errorElement: <Page404 />,
@@ -112,8 +178,8 @@ function App() {
     {
       path: "/alerts",
       label: "Alert",
-      icon: <IconAlertCircle />
-    }
+      icon: <IconAlertCircle />,
+    },
   ];
 
   return (
@@ -207,8 +273,10 @@ function App() {
                       mr="xl"
                     />
                   </MediaQuery>
-
-                  <Text>Schedule Your Month</Text>
+                  <Flex>
+                    <IconSubtask />
+                    <Text>Schedule Your Month</Text>
+                  </Flex>
                 </div>
               </Header>
             }
@@ -221,6 +289,7 @@ function App() {
           </AppShell>
         </BrowserRouter>
       )}
+      <ToastContainer />
     </>
   );
 }

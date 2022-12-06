@@ -1,7 +1,12 @@
-import { Box, Flex, Text } from "@mantine/core";
+import { Box, Flex, RingProgress, Text } from "@mantine/core";
 import { useSelector } from "react-redux";
 import { useDasboard } from "../../lib";
 import { RootState } from "../../stores";
+import Emoji from "react-emojis";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { Pie } from "react-chartjs-2";
+
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Dashboard = () => {
   const { token, user } = useSelector((state: RootState) => state.clickState);
@@ -10,8 +15,8 @@ const Dashboard = () => {
 
   return (
     <Box>
-      <Flex gap={"10px"}>
-        <Box
+      <Flex gap={"10px"} wrap={"wrap"}>
+        <Flex
           sx={(theme) => ({
             backgroundColor: theme.colors.blue,
             color: theme.colors.white,
@@ -21,29 +26,31 @@ const Dashboard = () => {
             padding: "10px",
           })}
         >
-          <Text
-            sx={(theme) => ({
-              fontFamily: "Roboto",
-              fontStyle: "normal",
-              fontWeight: 700,
-              fontSize: "20px",
-              lineHeight: "23px",
-            })}
-          >
-            Saldo
-          </Text>
-          <Text
-            sx={(theme) => ({
-              fontFamily: "Roboto",
-              fontStyle: "normal",
-              fontWeight: 700,
-              fontSize: "28px",
-              lineHeight: "33px",
-            })}
-          >
-            R$ {data?.total_saldo?.toFixed(2)}
-          </Text>
-        </Box>
+          <Flex direction={"column"}>
+            <Text
+              sx={(theme) => ({
+                fontFamily: "Roboto",
+                fontStyle: "normal",
+                fontWeight: 700,
+                fontSize: "20px",
+                lineHeight: "23px",
+              })}
+            >
+              Saldo
+            </Text>
+            <Text
+              sx={(theme) => ({
+                fontFamily: "Roboto",
+                fontStyle: "normal",
+                fontWeight: 700,
+                fontSize: "28px",
+                lineHeight: "33px",
+              })}
+            >
+              R$ {data?.total_saldo?.toFixed(2)}
+            </Text>
+          </Flex>
+        </Flex>
 
         <Box
           sx={(theme) => ({
@@ -112,9 +119,7 @@ const Dashboard = () => {
             R$ {data?.total_gastos?.toFixed(2)}
           </Text>
         </Box>
-      </Flex>
 
-      <Flex mt={"10px"} gap={"10px"}>
         <Box
           sx={(theme) => ({
             backgroundColor: theme.colors.blue,
@@ -135,6 +140,11 @@ const Dashboard = () => {
             })}
           >
             {data?.status ? "Muito bem!" : "O que pena!"}
+            {data?.status ? (
+              <Emoji emoji="grinning-face-with-big-eyes" />
+            ) : (
+              <Emoji emoji="loudly-crying-face" />
+            )}
           </Text>
           <Text
             sx={(theme) => ({
@@ -148,8 +158,16 @@ const Dashboard = () => {
             {data?.status
               ? "Sua carteira está positiva!"
               : "Sua carteira está negativa!"}
+            {data?.status ? (
+              <Emoji emoji="money-bag" />
+            ) : (
+              <Emoji emoji="credit-card" />
+            )}
           </Text>
         </Box>
+      </Flex>
+
+      {/* <Flex mt={"10px"} gap={"10px"} wrap={"wrap"}>
         <Box
           sx={(theme) => ({
             width: "100%",
@@ -158,9 +176,9 @@ const Dashboard = () => {
             padding: "10px",
           })}
         ></Box>
-      </Flex>
+      </Flex> */}
 
-      <Flex mt={"10px"} gap={"10px"}>
+      <Flex mt={"10px"} gap={"10px"} wrap={"wrap"}>
         <Box
           sx={(theme) => ({
             backgroundColor: theme.colors.orange,
@@ -229,7 +247,7 @@ const Dashboard = () => {
         </Box>
       </Flex>
 
-      <Flex mt={"10px"} gap={"10px"}>
+      <Flex mt={"10px"} gap={"10px"} wrap={"wrap"}>
         <Box
           sx={(theme) => ({
             backgroundColor: theme.colors.red,

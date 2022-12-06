@@ -15,7 +15,8 @@ import { useMutation } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 import { api, queryClient } from "../../../lib";
 import { RootState } from "../../../stores";
-import { IModal } from "../../../types";
+import { IModal } from "../../../@types";
+import { toast } from "react-toastify";
 
 const ModalDeleteExpense = ({ isOpen, onClose, refetch, gasto }: IModal) => {
   const { token, user } = useSelector((state: RootState) => state.clickState);
@@ -34,6 +35,17 @@ const ModalDeleteExpense = ({ isOpen, onClose, refetch, gasto }: IModal) => {
         console.log(resp);
         if (!!refetch) refetch();
         onClose();
+
+        toast.info("Apagou um   gasto!", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       },
     }
   );

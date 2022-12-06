@@ -11,7 +11,7 @@ import {
 } from "@mantine/core";
 import { imageLogin } from "../../assets";
 import { useForm } from "react-hook-form";
-import { ILogin } from "../../types";
+import { ILogin } from "../../@types";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "../../lib";
 import { api } from "../../lib";

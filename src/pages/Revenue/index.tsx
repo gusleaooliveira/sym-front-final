@@ -17,7 +17,7 @@ import {
 } from "../../components";
 import { useRevenues } from "../../lib";
 import { RootState } from "../../stores";
-import { IRevenue } from "../../types";
+import { IRevenue } from "../../@types";
 
 const Revenue = () => {
   const { token, user } = useSelector((state: RootState) => state.clickState);

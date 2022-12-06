@@ -17,7 +17,7 @@ import {
 } from "../../components";
 import { useExpenses } from "../../lib";
 import { RootState } from "../../stores";
-import { IExpense } from "../../types";
+import { IExpense } from "../../@types";
 
 const Expenses = () => {
   const { token, user } = useSelector((state: RootState) => state.clickState);

@@ -15,7 +15,8 @@ import { useMutation } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 import { api, queryClient } from "../../../lib";
 import { RootState } from "../../../stores";
-import { IModal } from "../../../types";
+import { IModal } from "../../../@types";
+import { toast } from "react-toastify";
 
 const ModalDeleteRevenue = ({
   isOpen,
@@ -39,6 +40,17 @@ const ModalDeleteRevenue = ({
         console.log(resp);
         if (!!refetch) refetch();
         onClose();
+
+        toast.info("Apagou  um recebimento!", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       },
     }
   );
@@ -57,7 +69,9 @@ const ModalDeleteRevenue = ({
       <Flex direction={"column"}>
         <Text>
           {" "}
-          Deseja apagar esse gasto de R$ {recebimento?.value.toFixed(2)}{" "}
+          Deseja apagar esse recebimento de R$ {recebimento?.value.toFixed(
+            2
+          )}{" "}
           referente ao/à {recebimento?.type}?{" "}
         </Text>
         <br />

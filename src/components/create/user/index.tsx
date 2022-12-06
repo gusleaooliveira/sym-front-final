@@ -2,7 +2,7 @@ import { Button, Modal, PasswordInput, TextInput } from "@mantine/core";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { api, queryClient } from "../../../lib";
-import { IModal, IUser } from "../../../types";
+import { IModal, IUser } from "../../../@types";
 
 const CreateModalUser = ({ isOpen, onClose }: IModal) => {
   const { mutate } = useMutation(
@@ -14,7 +14,7 @@ const CreateModalUser = ({ isOpen, onClose }: IModal) => {
       onSuccess: (resp) => {
         queryClient.invalidateQueries({ queryKey: ["create"] });
         console.log(resp);
-        onClose()
+        onClose();
       },
     }
   );
