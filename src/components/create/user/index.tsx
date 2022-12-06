@@ -3,6 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { api, queryClient } from "../../../lib";
 import { IModal, IUser } from "../../../@types";
+import { toast } from 'react-toastify'
 
 const CreateModalUser = ({ isOpen, onClose }: IModal) => {
   const { mutate } = useMutation(
@@ -15,8 +16,20 @@ const CreateModalUser = ({ isOpen, onClose }: IModal) => {
         queryClient.invalidateQueries({ queryKey: ["create"] });
         console.log(resp);
         onClose();
+
+
+        toast.info("Conta criada com sucesso!", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       },
-    }
+    } 
   );
   const {
     register,
@@ -28,7 +41,11 @@ const CreateModalUser = ({ isOpen, onClose }: IModal) => {
     mutate(data);
   };
   return (
-    <Modal opened={isOpen} onClose={onClose} fullScreen title="Cadastre-se!">
+    <Modal opened={isOpen} onClose={onClose} overlayBlur={3}
+    overlayOpacity={0.55}
+    centered
+    padding={25}
+    radius={"lg"} title="Cadastre-se!">
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextInput
           label="Nome:"

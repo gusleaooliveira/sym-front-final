@@ -133,7 +133,7 @@ const ModalCreateExpense = ({ isOpen, onClose, refetch }: IModal) => {
           data={tagList}
           onChange={(e: string) => {
             setValue("type", e);
-          }}
+          }} 
         />
         <Select
           label="Tag"
