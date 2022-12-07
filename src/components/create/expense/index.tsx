@@ -129,17 +129,17 @@ const ModalCreateExpense = ({ isOpen, onClose, refetch }: IModal) => {
           label="Tipo"
           placeholder="Tipo de gasto"
           withAsterisk
-          description="Selecione a  frequência do tipo de gasto"
+          description="Selecione o  tipo de gasto"
           data={tagList}
           onChange={(e: string) => {
             setValue("type", e);
-          }} 
+          }}
         />
         <Select
-          label="Tag"
-          placeholder="Classifque o gasto"
+          label="Frequência "
+          placeholder="Frequência em que o gasto é feito"
           withAsterisk
-          description="Classifique o tipo de gasto"
+          description="Selecione a frequência em que o gasto é feito"
           data={typeList}
           onChange={(e: string) => {
             setValue("frequency", e);

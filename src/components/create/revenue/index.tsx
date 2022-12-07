@@ -118,17 +118,17 @@ const ModalCreateRevenue = ({ isOpen, onClose, refetch }: IModal) => {
           label="Tipo"
           placeholder="Tipo  do seu recebimento"
           withAsterisk
-          description="Selecione a  frequência do tipo de recebimento"
+          description="Selecione  o tipo de recebimento"
           data={tagList}
           onChange={(e: string) => {
             setValue("type", e);
           }}
         />
         <Select
-          label="Tag"
-          placeholder="Classifque  o seu recebimento"
+          label="Frequência "
+          placeholder="Frequência em que o recebimento é feito"
           withAsterisk
-          description="Classifique o tipo de  do seu recebimento"
+          description="Selecione a frequência em que o recebimento é feito"
           data={typeList}
           onChange={(e: string) => {
             setValue("frequency", e);

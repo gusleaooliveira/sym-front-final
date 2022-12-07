@@ -1,4 +1,4 @@
-import { Box, Flex, RingProgress, Text } from "@mantine/core";
+import { Box, Flex, Grid, RingProgress, Text } from "@mantine/core";
 import { useSelector } from "react-redux";
 import { useDasboard } from "../../lib";
 import { RootState } from "../../stores";
@@ -15,13 +15,17 @@ const Dashboard = () => {
 
   return (
     <Box>
-      <Flex gap={"10px"} wrap={"wrap"}>
-        <Flex
+      <Grid gutter={5} grow>
+        <Grid.Col
+          xs={12}
+          sm={3}
+          md={4}
+          lg={4}
+          xl={3}
+          m={5}
           sx={(theme) => ({
             backgroundColor: theme.colors.blue,
             color: theme.colors.white,
-            width: "100%",
-            height: "157px",
             borderRadius: "10px",
             padding: "10px",
           })}
@@ -50,14 +54,18 @@ const Dashboard = () => {
               R$ {data?.total_saldo?.toFixed(2)}
             </Text>
           </Flex>
-        </Flex>
+        </Grid.Col>
 
-        <Box
+        <Grid.Col
+          xs={12}
+          sm={3}
+          md={4}
+          lg={4}
+          xl={3}
+          m={5}
           sx={(theme) => ({
             backgroundColor: theme.colors.orange,
             color: theme.colors.white,
-            width: "100%",
-            height: "157px",
             borderRadius: "10px",
             padding: "10px",
           })}
@@ -84,14 +92,18 @@ const Dashboard = () => {
           >
             R$ {data?.total_recebimentos?.toFixed(2)}
           </Text>
-        </Box>
+        </Grid.Col>
 
-        <Box
+        <Grid.Col
+          xs={12}
+          sm={3}
+          md={4}
+          lg={4}
+          xl={3}
+          m={5}
           sx={(theme) => ({
             backgroundColor: theme.colors.red,
             color: theme.colors.white,
-            width: "100%",
-            height: "157px",
             borderRadius: "10px",
             padding: "10px",
           })}
@@ -118,14 +130,18 @@ const Dashboard = () => {
           >
             R$ {data?.total_gastos?.toFixed(2)}
           </Text>
-        </Box>
+        </Grid.Col>
+      </Grid>
 
-        <Box
+      <Grid gutter={5} grow>
+        <Grid.Col
+          xs={12}
+          sm={11}
+          md={11}
+          m={5}
           sx={(theme) => ({
             backgroundColor: theme.colors.blue,
             color: theme.colors.white,
-            width: "100%",
-            height: "157px",
             borderRadius: "10px",
             padding: "10px",
           })}
@@ -164,27 +180,20 @@ const Dashboard = () => {
               <Emoji emoji="credit-card" />
             )}
           </Text>
-        </Box>
-      </Flex>
+        </Grid.Col>
+      </Grid>
 
-      {/* <Flex mt={"10px"} gap={"10px"} wrap={"wrap"}>
-        <Box
-          sx={(theme) => ({
-            width: "100%",
-            height: "157px",
-            borderRadius: "10px",
-            padding: "10px",
-          })}
-        ></Box>
-      </Flex> */}
-
-      <Flex mt={"10px"} gap={"10px"} wrap={"wrap"}>
-        <Box
+      <Grid gutter={5} grow>
+        <Grid.Col
+          xs={12}
+          sm={4}
+          md={6}
+          lg={5}
+          xl={5}
+          m={5}
           sx={(theme) => ({
             backgroundColor: theme.colors.orange,
             color: theme.colors.white,
-            width: "100%",
-            height: "157px",
             borderRadius: "10px",
             padding: "10px",
           })}
@@ -211,13 +220,18 @@ const Dashboard = () => {
           >
             R$ {data?.total_entradas_eventuais?.toFixed(2)}
           </Text>
-        </Box>
-        <Box
+        </Grid.Col>
+
+        <Grid.Col
+          xs={12}
+          sm={4}
+          md={6}
+          lg={5}
+          xl={5}
+          m={5}
           sx={(theme) => ({
             backgroundColor: theme.colors.orange,
             color: theme.colors.white,
-            width: "100%",
-            height: "157px",
             borderRadius: "10px",
             padding: "10px",
           })}
@@ -244,16 +258,20 @@ const Dashboard = () => {
           >
             R$ {data?.total_entradas_recorrentes?.toFixed(2)}
           </Text>
-        </Box>
-      </Flex>
+        </Grid.Col>
+      </Grid>
 
-      <Flex mt={"10px"} gap={"10px"} wrap={"wrap"}>
-        <Box
+      <Grid gutter={5} grow>
+        <Grid.Col
+          xs={12}
+          sm={4}
+          md={6}
+          lg={5}
+          xl={5}
+          m={5}
           sx={(theme) => ({
             backgroundColor: theme.colors.red,
             color: theme.colors.white,
-            width: "100%",
-            height: "157px",
             borderRadius: "10px",
             padding: "10px",
           })}
@@ -280,13 +298,18 @@ const Dashboard = () => {
           >
             R$ {data?.total_saidas_eventuais?.toFixed(2)}
           </Text>
-        </Box>
-        <Box
+        </Grid.Col>
+
+        <Grid.Col
+          xs={12}
+          sm={4}
+          md={6}
+          lg={5}
+          xl={5}
+          m={5}
           sx={(theme) => ({
             backgroundColor: theme.colors.red,
             color: theme.colors.white,
-            width: "100%",
-            height: "157px",
             borderRadius: "10px",
             padding: "10px",
           })}
@@ -313,8 +336,8 @@ const Dashboard = () => {
           >
             R$ {data?.total_saidas_recorrentes?.toFixed(2)}
           </Text>
-        </Box>
-      </Flex>
+        </Grid.Col>
+      </Grid>
     </Box>
   );
 };

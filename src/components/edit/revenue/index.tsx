@@ -94,7 +94,7 @@ const ModalCreateRevenue = ({
       centered
       padding={25}
       radius={"lg"}
-      title="Cadastrar recebimento!"
+      title="Editar recebimento!"
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <NumberInput
@@ -129,7 +129,7 @@ const ModalCreateRevenue = ({
           label="Tipo"
           placeholder="Tipo de recebimento"
           withAsterisk
-          description="Selecione a  frequência do tipo de recebimento"
+          description="Selecione o  tipo de recebimento"
           data={tagList}
           value={watch("type")}
           onChange={(e: string) => {
@@ -137,10 +137,10 @@ const ModalCreateRevenue = ({
           }}
         />
         <Select
-          label="Tag"
-          placeholder="Classifque o recebimento"
+          label="Frequência "
+          placeholder="Frequência em que o recebimento é feito"
           withAsterisk
-          description="Classifique o tipo de recebimento"
+          description="Selecione a frequência em que o recebimento é feito"
           data={typeList}
           value={watch("frequency")}
           onChange={(e: string) => {

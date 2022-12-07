@@ -94,7 +94,7 @@ const ModalCreateExpense = ({ isOpen, onClose, refetch, gasto }: IModal) => {
       centered
       padding={25}
       radius={"lg"}
-      title="Cadastrar gasto!"
+      title="Editar gasto!"
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextInput
@@ -135,7 +135,7 @@ const ModalCreateExpense = ({ isOpen, onClose, refetch, gasto }: IModal) => {
           label="Tipo"
           placeholder="Tipo de gasto"
           withAsterisk
-          description="Selecione a  frequência do tipo de gasto"
+          description="Selecione o  tipo de gasto"
           data={tagList}
           value={watch("type")}
           onChange={(e: string) => {
@@ -143,10 +143,10 @@ const ModalCreateExpense = ({ isOpen, onClose, refetch, gasto }: IModal) => {
           }}
         />
         <Select
-          label="Tag"
-          placeholder="Classifque o gasto"
+          label="Frequência "
+          placeholder="Frequência em que o gasto é feito"
           withAsterisk
-          description="Classifique o tipo de gasto"
+          description="Selecione a frequência em que o gasto é feito"
           data={typeList}
           value={watch("frequency")}
           onChange={(e: string) => {
