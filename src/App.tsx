@@ -187,109 +187,111 @@ function App() {
       {token === "" ? (
         <Login />
       ) : (
-        <BrowserRouter>
-          <AppShell
-            styles={{
-              main: {
-                background:
-                  theme.colorScheme === "dark"
-                    ? theme.colors.dark[8]
-                    : theme.colors.gray[0],
-              },
-            }}
-            navbarOffsetBreakpoint="sm"
-            asideOffsetBreakpoint="sm"
-            navbar={
-              <Navbar
-                p="md"
-                hiddenBreakpoint="sm"
-                hidden={!opened}
-                width={{ sm: 200, lg: 300 }}
-              >
-                <Navbar.Section mt="xs">
-                  {/* Header with logo */}
-                </Navbar.Section>
+        <>
+          <BrowserRouter>
+            <AppShell
+              styles={{
+                main: {
+                  background:
+                    theme.colorScheme === "dark"
+                      ? theme.colors.dark[8]
+                      : theme.colors.gray[0],
+                },
+              }}
+              navbarOffsetBreakpoint="sm"
+              asideOffsetBreakpoint="sm"
+              navbar={
+                <Navbar
+                  p="md"
+                  hiddenBreakpoint="sm"
+                  hidden={!opened}
+                  width={{ sm: 200, lg: 300 }}
+                >
+                  <Navbar.Section mt="xs">
+                    {/* Header with logo */}
+                  </Navbar.Section>
 
-                <Navbar.Section grow component={ScrollArea} mx="-xs" px="xs">
-                  {listOfRoutes.map((route) => {
-                    return (
-                      <NavLink
-                        label={route.label}
-                        to={route.path}
-                        component={Link}
-                        icon={route.icon}
-                      />
-                    );
-                  })}
-                </Navbar.Section>
+                  <Navbar.Section grow component={ScrollArea} mx="-xs" px="xs">
+                    {listOfRoutes.map((route) => {
+                      return (
+                        <NavLink
+                          label={route.label}
+                          to={route.path}
+                          component={Link}
+                          icon={route.icon}
+                        />
+                      );
+                    })}
+                  </Navbar.Section>
 
-                <Navbar.Section>
-                  <UnstyledButton
-                    className={classes.user}
-                    onClick={() => {
-                      dispatch({ type: SET_TOKEN, token: "" });
-                      dispatch({ type: SET_USER, user: "" });
+                  <Navbar.Section>
+                    <UnstyledButton
+                      className={classes.user}
+                      onClick={() => {
+                        dispatch({ type: SET_TOKEN, token: "" });
+                        dispatch({ type: SET_USER, user: "" });
+                      }}
+                    >
+                      <Group>
+                        <Avatar src={"image"} radius="xl" />
+
+                        <div style={{ flex: 1 }}>
+                          <Text size="sm" weight={500}>
+                            {user?.name}
+                          </Text>
+
+                          <Text color="dimmed" size="xs">
+                            {user?.email}
+                          </Text>
+                        </div>
+
+                        <IconChevronRight size={14} stroke={1.5} />
+                      </Group>
+                    </UnstyledButton>
+                  </Navbar.Section>
+                </Navbar>
+              }
+              footer={
+                <Footer height={60} p="md">
+                  <Text align="center"> Criado por Gustavo Leão e Érik</Text>
+                </Footer>
+              }
+              header={
+                <Header height={{ base: 50, md: 70 }} p="md">
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      height: "100%",
                     }}
                   >
-                    <Group>
-                      <Avatar src={"image"} radius="xl" />
-
-                      <div style={{ flex: 1 }}>
-                        <Text size="sm" weight={500}>
-                          {user?.name}
-                        </Text>
-
-                        <Text color="dimmed" size="xs">
-                          {user?.email}
-                        </Text>
-                      </div>
-
-                      <IconChevronRight size={14} stroke={1.5} />
-                    </Group>
-                  </UnstyledButton>
-                </Navbar.Section>
-              </Navbar>
-            }
-            footer={
-              <Footer height={60} p="md">
-                <Text align="center"> Criado por Gustavo Leão e Érik</Text>
-              </Footer>
-            }
-            header={
-              <Header height={{ base: 50, md: 70 }} p="md">
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    height: "100%",
-                  }}
-                >
-                  <MediaQuery largerThan="sm" styles={{ display: "none" }}>
-                    <Burger
-                      opened={opened}
-                      onClick={() => setOpened((o) => !o)}
-                      size="sm"
-                      color={theme.colors.gray[6]}
-                      mr="xl"
-                    />
-                  </MediaQuery>
-                  <Flex>
-                    <IconSubtask />
-                    <Text>Schedule Your Month</Text>
-                  </Flex>
-                </div>
-              </Header>
-            }
-          >
-            <Routes>
-              {router.map((chave) => {
-                return <Route path={chave.path} element={chave.element} />;
-              })}
-            </Routes>
-          </AppShell>
-        </BrowserRouter>
+                    <MediaQuery largerThan="sm" styles={{ display: "none" }}>
+                      <Burger
+                        opened={opened}
+                        onClick={() => setOpened((o) => !o)}
+                        size="sm"
+                        color={theme.colors.gray[6]}
+                        mr="xl"
+                      />
+                    </MediaQuery>
+                    <Flex>
+                      <IconSubtask />
+                      <Text>Schedule Your Month</Text>
+                    </Flex>
+                  </div>
+                </Header>
+              }
+            >
+              <Routes>
+                {router.map((chave) => {
+                  return <Route path={chave.path} element={chave.element} />;
+                })}
+              </Routes>
+            </AppShell>
+          </BrowserRouter>
+          <ToastContainer />
+        </>
       )}
-      <ToastContainer />
     </>
   );
 }
