@@ -3,10 +3,6 @@ import { useSelector } from "react-redux";
 import { useDasboard } from "../../lib";
 import { RootState } from "../../stores";
 import Emoji from "react-emojis";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Pie } from "react-chartjs-2";
-
-ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Dashboard = () => {
   const { token, user } = useSelector((state: RootState) => state.clickState);
