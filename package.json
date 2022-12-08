@@ -52,7 +52,7 @@
     "start": "react-scripts start",
     "build": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\" && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject" ,
+    "eject": "react-scripts eject",
     "buildCommit": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\" && react-scripts build && git add . && git commit && git push",
     "commit": "git add . && git commit && git push"
   },
@@ -75,6 +75,9 @@
     ]
   },
   "devDependencies": {
-    "@types/react-vis": "^1.11.11"
+    "@types/react-vis": "^1.11.11",
+    "envify": "^4.1.0",
+    "terser": "^5.16.1",
+    "uglifyify": "^5.0.2"
   }
 }
