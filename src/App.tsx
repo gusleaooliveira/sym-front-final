@@ -135,7 +135,7 @@ function App() {
     }
   }
 
-  alerta();
+  // alerta();
 
   const router = [
     {
@@ -289,9 +289,9 @@ function App() {
               </Routes>
             </AppShell>
           </BrowserRouter>
-          <ToastContainer />
         </>
       )}
+      <ToastContainer />
     </>
   );
 }
