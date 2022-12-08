@@ -5,6 +5,7 @@ import {
   Card,
   CloseButton,
   Flex,
+  Grid,
   Text,
 } from "@mantine/core";
 import { IconPencil } from "@tabler/icons";
@@ -32,17 +33,21 @@ const Revenue = () => {
 
   return (
     <>
-      <Flex justify={"space-between"}>
-        <Button onClick={() => setCreateRevenue(true)}>Cadastrar</Button>
+      <Grid>
+        <Grid.Col span={10}>
+          <Button onClick={() => setCreateRevenue(true)}>Cadastrar</Button>
+        </Grid.Col>
 
-        <Button
-          component={CsvDownloadButton}
-          data={data}
-          disabled={!!data ? false : true}
-        >
-          Baixar dados
-        </Button>
-      </Flex>
+        <Grid.Col span={1}>
+          <Button
+            component={CsvDownloadButton}
+            data={data}
+            disabled={!!data ? false : true}
+          >
+            Baixar dados
+          </Button>
+        </Grid.Col>
+      </Grid>
 
       {data?.map((chave: IRevenue) => {
         return (

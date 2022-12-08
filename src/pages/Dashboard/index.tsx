@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { useDasboard } from "../../lib";
 import { RootState } from "../../stores";
 import Emoji from "react-emojis";
-import CsvDownloadButton from "react-json-to-csv";
 
 const Dashboard = () => {
   const { token, user } = useSelector((state: RootState) => state.clickState);

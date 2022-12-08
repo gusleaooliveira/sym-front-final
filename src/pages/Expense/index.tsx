@@ -5,9 +5,12 @@ import {
   Card,
   CloseButton,
   Flex,
+  Grid,
+  Input,
   Text,
+  Tooltip,
 } from "@mantine/core";
-import { IconPencil } from "@tabler/icons";
+import { IconAlertCircle, IconBrandTwitter, IconPencil } from "@tabler/icons";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import {
@@ -19,6 +22,7 @@ import { useExpenses } from "../../lib";
 import { RootState } from "../../stores";
 import { IExpense } from "../../@types";
 import CsvDownloadButton from "react-json-to-csv";
+import { IconSearch } from "@tabler/icons";
 
 const Expenses = () => {
   const { token, user } = useSelector((state: RootState) => state.clickState);
@@ -32,17 +36,21 @@ const Expenses = () => {
 
   return (
     <>
-      <Flex justify={"space-between"}>
-        <Button onClick={() => setCreateExpense(true)}>Cadastrar</Button>
+      <Grid>
+        <Grid.Col span={10}>
+          <Button onClick={() => setCreateExpense(true)}>Cadastrar</Button>
+        </Grid.Col>
 
-        <Button
-          component={CsvDownloadButton}
-          data={data}
-          disabled={!!data ? false : true}
-        >
-          Baixar dados
-        </Button>
-      </Flex>
+        <Grid.Col span={1}>
+          <Button
+            component={CsvDownloadButton}
+            data={data}
+            disabled={!!data ? false : true}
+          >
+            Baixar dados
+          </Button>
+        </Grid.Col>
+      </Grid>
 
       {data?.map((chave: IExpense) => {
         return (
