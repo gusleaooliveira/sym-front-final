@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../stores";
 import { toast } from "react-toastify";
+import "dayjs/locale/pt-br";
 
 const ModalCreateRevenue = ({
   isOpen,
@@ -130,8 +131,8 @@ const ModalCreateRevenue = ({
           withAsterisk
           description="Selecione a data em que recebeu o valor"
           locale="pt-br"
-          defaultValue={watch("date")}
-          value={watch("date")}
+          defaultValue={new Date(watch("date"))}
+          value={new Date(watch("date"))}
           onChange={(e: Date) => {
             setValue("date", e);
           }}

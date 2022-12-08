@@ -58,6 +58,7 @@ import { IconDashboard } from "@tabler/icons";
 import { useAlerts, useDasboard } from "./lib";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
+import "dayjs/locale/pt-br";
 
 const useStyles = createStyles((theme) => ({
   user: {

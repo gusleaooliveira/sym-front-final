@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../stores";
 import { toast } from "react-toastify";
+import "dayjs/locale/pt-br";
 
 const ModalCreateExpense = ({ isOpen, onClose, refetch, gasto }: IModal) => {
   const { token, user } = useSelector((state: RootState) => state.clickState);
@@ -138,7 +139,7 @@ const ModalCreateExpense = ({ isOpen, onClose, refetch, gasto }: IModal) => {
           withAsterisk
           description="Selecione a data em que gastou o valor"
           locale="pt-br"
-          value={watch("date")}
+          value={new Date(watch("date"))}
           onChange={(e: Date) => {
             setValue("date", e);
           }}

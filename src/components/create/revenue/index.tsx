@@ -16,6 +16,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../stores";
 import { toast } from "react-toastify";
+import "dayjs/locale/pt-br";
 
 const ModalCreateRevenue = ({ isOpen, onClose, refetch }: IModal) => {
   const { token, user } = useSelector((state: RootState) => state.clickState);
@@ -121,7 +122,7 @@ const ModalCreateRevenue = ({ isOpen, onClose, refetch }: IModal) => {
           withAsterisk
           description="Selecione a data em que recebeu o valor"
           locale="pt-br"
-          value={watch("date")}
+          value={new Date(watch("date"))}
           onChange={(e: Date) => {
             setValue("date", e);
           }}
