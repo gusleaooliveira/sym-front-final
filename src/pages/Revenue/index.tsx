@@ -18,6 +18,7 @@ import {
 import { useRevenues } from "../../lib";
 import { RootState } from "../../stores";
 import { IRevenue } from "../../@types";
+import CsvDownloadButton from "react-json-to-csv";
 
 const Revenue = () => {
   const { token, user } = useSelector((state: RootState) => state.clickState);
@@ -31,7 +32,17 @@ const Revenue = () => {
 
   return (
     <>
-      <Button onClick={() => setCreateRevenue(true)}>Cadastrar</Button>
+      <Flex justify={"space-between"}>
+        <Button onClick={() => setCreateRevenue(true)}>Cadastrar</Button>
+
+        <Button
+          component={CsvDownloadButton}
+          data={data}
+          disabled={!!data ? false : true}
+        >
+          Baixar dados
+        </Button>
+      </Flex>
 
       {data?.map((chave: IRevenue) => {
         return (

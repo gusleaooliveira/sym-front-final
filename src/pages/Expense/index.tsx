@@ -18,6 +18,7 @@ import {
 import { useExpenses } from "../../lib";
 import { RootState } from "../../stores";
 import { IExpense } from "../../@types";
+import CsvDownloadButton from "react-json-to-csv";
 
 const Expenses = () => {
   const { token, user } = useSelector((state: RootState) => state.clickState);
@@ -31,7 +32,17 @@ const Expenses = () => {
 
   return (
     <>
-      <Button onClick={() => setCreateExpense(true)}>Cadastrar</Button>
+      <Flex justify={"space-between"}>
+        <Button onClick={() => setCreateExpense(true)}>Cadastrar</Button>
+
+        <Button
+          component={CsvDownloadButton}
+          data={data}
+          disabled={!!data ? false : true}
+        >
+          Baixar dados
+        </Button>
+      </Flex>
 
       {data?.map((chave: IExpense) => {
         return (
