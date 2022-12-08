@@ -8,8 +8,11 @@ import {
   Title,
   Text,
   Anchor,
+  Image,
+  Flex,
+  Box,
 } from "@mantine/core";
-import { imageLogin } from "../../assets";
+import { favicon, imageLogin } from "../../assets";
 import { useForm } from "react-hook-form";
 import { ILogin } from "../../@types";
 import { useMutation } from "@tanstack/react-query";
@@ -19,6 +22,7 @@ import { useState } from "react";
 import { CreateModalUser } from "../../components";
 import { useDispatch } from "react-redux";
 import { SET_TOKEN, SET_USER } from "../../stores/actions";
+import { toast } from "react-toastify";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -71,6 +75,19 @@ const Login = () => {
 
         console.log(resp);
       },
+      onError: (resp) => {
+        queryClient.invalidateQueries({ queryKey: ["login"] });
+        toast.error("Email e/ou senha inválidos!", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      },
     }
   );
   const {
@@ -97,7 +114,6 @@ const Login = () => {
         >
           Seja bem-vindo!
         </Title>
-
         <form onSubmit={handleSubmit(onSubmit)}>
           <TextInput
             label="E-mail:"

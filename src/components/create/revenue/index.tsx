@@ -47,6 +47,19 @@ const ModalCreateRevenue = ({ isOpen, onClose, refetch }: IModal) => {
           theme: "dark",
         });
       },
+      onError: (resp) => {
+        queryClient.invalidateQueries({ queryKey: ["login"] });
+        toast.error("Erro ao cadastrar recebimento!", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      },
     }
   );
   const {

@@ -47,6 +47,19 @@ const ModalDeleteExpense = ({ isOpen, onClose, refetch, gasto }: IModal) => {
           theme: "dark",
         });
       },
+      onError: (resp) => {
+        queryClient.invalidateQueries({ queryKey: ["login"] });
+        toast.error("Erro ao apagar gasto!", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      },
     }
   );
   return (
