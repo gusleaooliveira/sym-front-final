@@ -1,6 +1,3 @@
-import imageLogin from './login/image.jpg'
+import imageLogin from "./login/image.jpg";
 
-
-export {
-    imageLogin
-}
+export { imageLogin };

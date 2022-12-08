@@ -1,1 +1,1 @@
-export { loadFromLocalStorage, saveToLocalStorage } from './localStorage'
+export { loadFromLocalStorage, saveToLocalStorage } from "./localStorage";

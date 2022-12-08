@@ -1,1 +1,1 @@
-declare module 'react-emojis';
+declare module "react-emojis";

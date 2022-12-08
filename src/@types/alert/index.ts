@@ -1,7 +1,5 @@
-
-
 export interface IAlert {
-    id?: number;
-    value: number;
-    user_id: number;
+  id?: number;
+  value: number;
+  user_id: number;
 }

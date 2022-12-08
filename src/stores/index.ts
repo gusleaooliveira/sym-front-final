@@ -1,11 +1,10 @@
-import { IUser } from './../@types';
-
+import { IUser } from "./../@types";
 
 export { Store } from "./store";
 
 export interface RootState {
-    clickState: {
-        token: string,
-        user: IUser
-    };
+  clickState: {
+    token: string;
+    user: IUser;
+  };
 }
