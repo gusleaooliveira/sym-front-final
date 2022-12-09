@@ -18,11 +18,12 @@ import { ILogin } from "../../@types";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "../../lib";
 import { api } from "../../lib";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CreateModalUser } from "../../components";
 import { useDispatch } from "react-redux";
 import { SET_TOKEN, SET_USER } from "../../stores/actions";
 import { toast } from "react-toastify";
+import { redirect, useLocation } from "react-router-dom";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {

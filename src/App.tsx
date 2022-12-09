@@ -49,6 +49,9 @@ import {
   Link,
   BrowserRouter,
   Routes,
+  redirect,
+  useHref,
+  Navigate,
 } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Revenues from "./pages/Revenue";
@@ -285,8 +288,16 @@ function App() {
             >
               <Routes>
                 {router.map((chave) => {
-                  return <Route path={chave.path} element={chave.element} />;
+                  return (
+                    <>
+                      <Route path={chave.path} element={chave.element} />
+                    </>
+                  );
                 })}
+                <Route
+                  path="*"
+                  element={<Navigate to="/dashboard" replace />}
+                />
               </Routes>
             </AppShell>
           </BrowserRouter>

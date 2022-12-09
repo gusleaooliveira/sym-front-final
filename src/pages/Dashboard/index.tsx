@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useDasboard } from "../../lib";
 import { RootState } from "../../stores";
 import Emoji from "react-emojis";
+import { useEffect } from "react";
 
 const Dashboard = () => {
   const { token, user } = useSelector((state: RootState) => state.clickState);
